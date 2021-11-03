@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.cherryqrqr">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.CherryQRQR"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".Utils.AccountWV"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.MySetting"
+            android:exported="true" />
+        <activity
+            android:name=".Utils.QRScanWV"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.StartDonationActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.FinshSignDiplayActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Utils.IdentifyWV"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.IdentifyActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Utils.UserNotice"
+            android:exported="true" />
+        <activity
+            android:name=".Utils.TermOfService"
+            android:exported="true" />
+        <activity
+            android:name=".Utils.TermsPrivacy"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.SignActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
