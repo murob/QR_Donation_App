@@ -14,8 +14,6 @@ public class QRScanWV extends AppCompatActivity {
 
     private WebView qr_scan_wv;
     private WebSettings settings;
-    private String url = "http://192.168.8.43:18080/public/qrScreen/1";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +30,6 @@ public class QRScanWV extends AppCompatActivity {
         settings = qr_scan_wv.getSettings();
         settings.setJavaScriptEnabled(true);
 
-        qr_scan_wv.loadUrl(url);
+        qr_scan_wv.loadUrl(getResources().getString(R.string.local_url)+"public/qrScreen/1");
     }
 }

@@ -18,7 +18,6 @@ public class TermsPrivacy extends AppCompatActivity {
     private WebView wv_privacy;
     private WebSettings wv_settings;
     private Button button;
-    private String url = "http://192.168.8.43:18080/public/terms/privacyPolicy";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +30,8 @@ public class TermsPrivacy extends AppCompatActivity {
         wv_privacy.setWebChromeClient(new WebChromeClient());
         wv_settings = wv_privacy.getSettings();
         wv_settings.setJavaScriptEnabled(true);
-//        wv_settings.setLoadWithOverviewMode(true);
-//        wv_settings.setUseWideViewPort(true);
-//        wv_settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-//        wv_settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
-//        wv_settings.setDomStorageEnabled(true);
 
-
-        wv_privacy.loadUrl(url);
+        wv_privacy.loadUrl(getResources().getString(R.string.local_url)+"public/terms/privacyPolicy");
 
         button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {

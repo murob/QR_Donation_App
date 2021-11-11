@@ -17,7 +17,6 @@ public class IdentifyWV extends AppCompatActivity {
 
     WebView identify_wv;
     WebSettings settings;
-    String url = "http://192.168.8.43:18080/public/joinScreen/1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +31,7 @@ public class IdentifyWV extends AppCompatActivity {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                if(url.equals("http://192.168.8.43:18080/public/joinScreen/5")) {
+                if(url.equals(getResources().getString(R.string.local_url)+"public/joinScreen/5")) {
                     Intent intent = new Intent(IdentifyWV.this, FinshSignDiplayActivity.class);
                     startActivity(intent);
                 }
@@ -46,7 +45,7 @@ public class IdentifyWV extends AppCompatActivity {
         settings = identify_wv.getSettings();
         settings.setJavaScriptEnabled(true);
 
-        identify_wv.loadUrl(url);
+        identify_wv.loadUrl(getResources().getString(R.string.local_url)+"public/joinScreen/1");
     }
 
 

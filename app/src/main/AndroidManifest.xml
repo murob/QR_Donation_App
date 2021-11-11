@@ -14,6 +14,9 @@
         android:theme="@style/Theme.CherryQRQR"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Utils.PinResetWV"
+            android:exported="true" />
+        <activity
             android:name=".Utils.AccountWV"
             android:exported="true" />
         <activity

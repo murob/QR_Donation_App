@@ -26,6 +26,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    compileSdkVersion 31
 }
 
 apply plugin: 'com.android.application'
@@ -37,6 +38,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-firestore'
+    implementation 'com.google.firebase:firebase-core:17.2.3'
     implementation 'com.google.android.gms:play-services-auth:19.2.0'
 
 
@@ -49,4 +51,14 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     implementation 'com.journeyapps:zxing-android-embedded:3.6.0' //QR코드를 읽기 위한 Zxing 라이브러리
+
+//    implementation 'com.google.firebase:firebase-admin:8.1.0' //Firebase Admin SDK로 ID 토큰 검증을 위한 의존설정
+
+    // 레트로핏 설정
+    implementation 'com.squareup.retrofit2:retrofit:2.6.4' // Retrofit 라이브러리
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.4' // Gson 변환기 라이브러리
+    implementation 'com.squareup.retrofit2:converter-scalars:2.6.4' // Scalars 변환기 라이브러리
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.2" // 로그인 인터셉터
+
+
 }

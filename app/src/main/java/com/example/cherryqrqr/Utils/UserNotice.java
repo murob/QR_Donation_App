@@ -18,7 +18,6 @@ public class UserNotice extends AppCompatActivity {
     private WebView wv_notice;
     private Button button;
     private WebSettings wv_settings;
-    private String url = "http://192.168.8.43:18080/public/terms/userNotice";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +31,7 @@ public class UserNotice extends AppCompatActivity {
         wv_settings = wv_notice.getSettings();
         wv_settings.setJavaScriptEnabled(true);
 
-        wv_notice.loadUrl(url);
+        wv_notice.loadUrl(getResources().getString(R.string.local_url)+"public/terms/userNotice");
 
         button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {

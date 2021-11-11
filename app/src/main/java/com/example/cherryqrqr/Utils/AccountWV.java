@@ -1,7 +1,9 @@
 package com.example.cherryqrqr.Utils;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebChromeClient;
@@ -17,7 +19,7 @@ public class AccountWV extends AppCompatActivity {
     private WebView webView;
     private ImageButton back_btn;
     private WebSettings wv_settings;
-    private String url = "http://192.168.8.43:18080/public/accountScreen";
+    private String url = getResources().getString(R.string.local_url)+"public/accountScreen";
 
 
     @Override
@@ -26,6 +28,8 @@ public class AccountWV extends AppCompatActivity {
         setContentView(R.layout.activity_account_wv);
 
         webView = findViewById(R.id.webView);
+        webView.getSettings().setLoadWithOverviewMode(true);
+        webView.getSettings().setUseWideViewPort(true);
 
         webView.setWebViewClient(new WebViewClient());
         webView.setWebChromeClient(new WebChromeClient());

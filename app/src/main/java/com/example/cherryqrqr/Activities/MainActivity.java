@@ -1,10 +1,13 @@
 package com.example.cherryqrqr.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.accounts.AccountManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -15,6 +18,11 @@ import com.example.cherryqrqr.R;
 import com.example.cherryqrqr.Utils.QRScanWV;
 import com.example.cherryqrqr.Utils.SharedPreferenceUtils;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -55,6 +63,23 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+//        FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
+        mUser.getIdToken(true)
+                .addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<GetTokenResult> task) {
+                        if(task.isSuccessful()){
+                            String idToken = task.getResult().getToken();
+                            Log.e("TAG", "idToken : " + idToken);
+                            //HTTPS를 통해 백엔드로 토큰전송
+                        } else {
+                            // Handle error -> task.getException();
+                        }
+                    }
+                });
+
     }
 
     @Override

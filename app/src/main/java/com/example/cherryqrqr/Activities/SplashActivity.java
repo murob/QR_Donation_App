@@ -20,9 +20,10 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         spu = new SharedPreferenceUtils(this);
-        spu.saveString(R.string.user_id, "logout");
-        String state = spu.getString(R.string.user_id,"");
+        spu.saveString(R.string.login_state, "log_out");
+//        spu.saveString(R.string.sign_state, "no_member");
 
+        String state = spu.getString(R.string.login_state,""); // 로그인 상태 확인을 위한 변수지정
         Log.d("state", "state:"+state);
 
         Handler handler = new Handler();
