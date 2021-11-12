@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.example.cherryqrqr.Constants.Constants;
 import com.example.cherryqrqr.R;
 import com.example.cherryqrqr.Retrofit.Entities.JoinDTO;
-import com.example.cherryqrqr.Retrofit.Entities.UserCheckDTO;
 import com.example.cherryqrqr.Retrofit.RetrofitInterface;
 import com.example.cherryqrqr.Utils.SharedPreferenceUtils;
 import com.google.android.gms.auth.api.Auth;
@@ -101,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                 .build();
 
         signOut();
-        Log.e("mAuth", "mAuth2:" +mAuth.getUid());
+        Log.e("mAuth", "mAuth :" + mAuth);
         Log.e("dd", getResources().getString(R.string.local_url)+"api/");
 
         // 레트로핏 인스턴스 생성
@@ -112,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // 레트로핏 인터페이스 객체 구현
         service = retrofit.create(RetrofitInterface.class);
-
+        spu.saveString(R.string.retrofit, service.toString());
         // 클릭 확인
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,19 +176,23 @@ public class LoginActivity extends AppCompatActivity {
                             user.getIdToken(true)
                                     .addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
                                         public void onComplete(@NonNull Task<GetTokenResult> task) {
-                                            Log.e("userIdToken onComplete", "userIdToken의 onComplete로 진입");  // 여기로 진입을 못하고 있네..
+                                            Log.e("userIdToken onComplete", "userIdToken의 onComplete로 진입");  // 여기로 진입을 못하고 있네..(해결)
                                             if (task.isSuccessful()){
                                                 Log.e("userIdToken onComplete", "userIdToken의 onComplete task 성공");
-                                                ///////
 
-                                                Call<UserCheckDTO> call = service.getCode(task.getResult().getToken()); // 토큰 값을 통해 검증
-                                                call.enqueue(new Callback<UserCheckDTO>() {
+                                                //res에 파이어베이스에서 발급받은 토큰을 저장하여 전역적으로 사용
+                                                spu.saveString(R.string.idToken, task.getResult().getToken());
+                                                Log.e("loginActivity", "여기서 토큰 값 뭐로 저장 ? : " + R.string.idToken);
+                                                Log.e("loginActivity", "토큰값 어케 저장 ? : " + spu.getString(R.string.idToken, ""));
+
+                                                Call<JoinDTO> call = service.getCode(task.getResult().getToken()); // 토큰 값을 통해 검증
+                                                call.enqueue(new Callback<JoinDTO>() {
                                                     @Override
-                                                    public void onResponse(Call<UserCheckDTO> call, Response<UserCheckDTO> response) {
+                                                    public void onResponse(Call<JoinDTO> call, Response<JoinDTO> response) {
                                                         Log.e(R_TAG, "onResponse");
                                                         if (response.isSuccessful()) { // 계정이 존재할 경우
                                                             Log.e(R_TAG, "onResponse success");
-                                                            UserCheckDTO result = response.body();
+                                                            JoinDTO result = response.body();
 
                                                             // 서버에 user가 등록되어 있으므로 sign_state를 member로 설정한다.
                                                             spu.saveString(R.string.sign_state, "member");
@@ -224,7 +227,6 @@ public class LoginActivity extends AppCompatActivity {
 
                                                                         Intent intent = new Intent(LoginActivity.this, SignActivity.class);
                                                                         startActivity(intent);
-
                                                                     } else {
                                                                         //실패
                                                                         Log.e(R_TAG, "레트로핏 통신 응답값 onResponse 실패!!");
@@ -232,24 +234,18 @@ public class LoginActivity extends AppCompatActivity {
                                                                         Log.e(R_TAG, "유저존재하지 않음!! sign_state : " + spu.getString(R.string.sign_state, ""));
                                                                     }
                                                                 }
-
                                                                 @Override
                                                                 public void onFailure(Call<JoinDTO> call, Throwable t) {
                                                                     Log.e("join", "join실패");
                                                                 }
-
                                                             });
-
                                                         }
                                                     }
-
                                                     @Override
-                                                    public void onFailure(Call<UserCheckDTO> call, Throwable t) {
+                                                    public void onFailure(Call<JoinDTO> call, Throwable t) {
                                                         Log.e(R_TAG, "통신실패");
                                                     }
                                                 });
-                                                ///////////
-
                                             } else {
                                                 Log.e("userIdToken onComplete", "userIdToken의 onComplete task 실패");
                                             }
@@ -278,12 +274,3 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 }
-
-
-
-
-
-
-    // 여기에서 레트로핏을 통해 서버랑 통신 후에 유저체크를 했을 경우 code가 0001?인가 나오면 sign_state를 no_member로 설정해준다.
-    // 반대로 code가 0000이 나오면 sign_state를 member로 sharedPreference에 저장해준다.
-

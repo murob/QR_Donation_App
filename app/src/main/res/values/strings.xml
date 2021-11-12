@@ -5,5 +5,6 @@
     <string name="user_token">125362172131-58ttiqksba2992vu3nugj180dk45bbms.apps.googleusercontent.com</string>
     <string name="idToken">FireBaseIdToken</string> <!-- 레트로핏 통신을 위한 idToken -->
     <string name="uid">uid</string> <!-- userCheck를 위한 uid -->
-    <string name="local_url">http://192.168.8.43:18080/</string><!-- 연결된 wifi ip -->
+    <string name="local_url">http://192.168.8.58:18080/</string><!-- 연결된 wifi ip -->
+    <string name="retrofit">null</string>
 </resources>

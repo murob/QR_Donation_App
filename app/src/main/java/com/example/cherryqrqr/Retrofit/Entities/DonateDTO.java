@@ -2,10 +2,10 @@ package com.example.cherryqrqr.Retrofit.Entities;
 
 import com.google.gson.annotations.SerializedName;
 
-public class UserCheckDTO {
+public class DonateDTO {
 
     @SerializedName("data")
-    public T data;
+    public User data;
 
     @SerializedName("code")
     public String code;
@@ -13,12 +13,12 @@ public class UserCheckDTO {
     @SerializedName("message")
     public String message;
 
+    public User getData() {
+        return data;
+    }
 
-    @Override
-    public String toString() {
-        return "UserCheckDTO{" +
-                "code='" + code + '\'' +
-                '}';
+    public void setData(User data) {
+        this.data = data;
     }
 
     public String getCode() {
@@ -35,13 +35,5 @@ public class UserCheckDTO {
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
     }
 }

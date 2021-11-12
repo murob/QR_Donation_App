@@ -1,6 +1,5 @@
 package com.example.cherryqrqr.Activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,20 +9,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.cherryqrqr.R;
-import com.example.cherryqrqr.Retrofit.Entities.UserCheckDTO;
 import com.example.cherryqrqr.Retrofit.RetrofitInterface;
 import com.example.cherryqrqr.Utils.SharedPreferenceUtils;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GetTokenResult;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FinshSignDiplayActivity extends AppCompatActivity {
 

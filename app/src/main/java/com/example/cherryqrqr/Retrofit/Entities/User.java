@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
-public class T {
+public class User {
 
     @SerializedName("userSn")
     private Long userSn;

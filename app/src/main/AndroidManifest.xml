@@ -22,9 +22,21 @@
         <activity
             android:name=".Activities.MySetting"
             android:exported="true" />
+<!--        <activity-->
+<!--            android:name=".Utils.QRScanWV"-->
+<!--            android:exported="true" />-->
         <activity
             android:name=".Utils.QRScanWV"
-            android:exported="true" />
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="deepLinkTest"/>
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Activities.StartDonationActivity"
             android:exported="true" />
@@ -60,10 +72,10 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public class JoinDTO {
 
     @SerializedName("data")
-    public T data;
+    public User data;
 
     @SerializedName("code")
     public String code;
@@ -23,11 +23,11 @@ public class JoinDTO {
                 '}';
     }
 
-    public T getData() {
+    public User getData() {
         return data;
     }
 
-    public void setData(T data) {
+    public void setData(User data) {
         this.data = data;
     }
 
